@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material'; 
+import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -13,6 +13,10 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 
+
+import { DishService } from './services/dish.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +25,13 @@ import { DishdetailComponent } from './dishdetail/dishdetail.component';
   ],
   imports: [
     BrowserModule,
-	BrowserAnimationsModule,
-	FormsModule,
-	HttpModule,
-	MaterialModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpModule,
+    MaterialModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [ DishService ],//依赖注入
   bootstrap: [AppComponent]
 })
 export class AppModule { }
