@@ -4,7 +4,6 @@ import { LEADERS } from '../shared/leaders';
 
 import { Observable } from 'rxjs/Rx';
 
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/delay';
 
 
@@ -13,22 +12,16 @@ export class LeaderService {
 
   constructor() { }
 
-  getLeaders(): Promise<Leader[]> {
-    return Observable.of(LEADERS).delay(2000).toPromise();
-    // return new Promise(resolve => {
-    //   setTimeout(() => resolve(LEADERS), 2000);
-    // });
+  getLeaders(): Observable<Leader[]> {
+    return Observable.of(LEADERS).delay(2000);
   }
 
-  getLeader(id: number): Promise<Leader>{
-    return Observable.of(LEADERS.filter((leader) => (leader.id == id))[0]).delay(2000).toPromise();
+  getLeader(id: number): Observable<Leader>{
+    return Observable.of(LEADERS.filter((leader) => (leader.id == id))[0]).delay(2000);
   }
 
-  getFeaturedPromotion(): Promise<Leader> {
-    return Observable.of(LEADERS.filter((leader) => leader.featured)[0]).delay(2000).toPromise();
-    // return new Promise(resolve => {
-    //   setTimeout(() =>  resolve(LEADERS.filter((leader) => leader.featured)[0]), 2000);
-    // });
+  getFeaturedPromotion(): Observable<Leader> {
+    return Observable.of(LEADERS.filter((leader) => leader.featured)[0]).delay(2000);
   }
 
 }
