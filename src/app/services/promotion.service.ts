@@ -4,8 +4,8 @@ import { PROMOTIONS } from '../shared/promotions';
 
 import { Observable } from 'rxjs/Rx';
 
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/delay';
+// import 'rxjs/add/operator/switchMap';
+// import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class PromotionService {

@@ -4,7 +4,8 @@ import { LEADERS } from '../shared/leaders';
 
 import { Observable } from 'rxjs/Rx';
 
-import 'rxjs/add/operator/delay';
+// import 'rxjs/add/operator/delay';
+// import 'rxjs/add/operator/switchMap';
 
 
 @Injectable()

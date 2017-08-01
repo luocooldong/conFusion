@@ -8,6 +8,8 @@ import { DISHES } from '../shared/dishes';
 import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/switchMap';
+
 
 @Injectable()
 export class DishService {
@@ -15,6 +17,7 @@ export class DishService {
   constructor() { }
 
   getDishes(): Observable<Dish[]> {
+    console.log(DISHES);
     return Observable.of(DISHES).delay(2000);
   }
 
