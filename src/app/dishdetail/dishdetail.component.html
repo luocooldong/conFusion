@@ -8,7 +8,7 @@
           <h3>{{dish.name | uppercase}}</h3>
         </md-card-title>
       </md-card-header>
-      <img md-card-image src={{dish.image}} alt={{dish.name}}>
+      <img md-card-image src= "{{BaseURL + dish.image}}"  alt={{dish.name}}>
       <md-card-content>
         <p>{{dish.description}}
         </p>
@@ -30,6 +30,15 @@
     </md-card>
   </div>
 
+  <div [hidden]="dish || errMess">
+    <md-spinner></md-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
   <div fxFlex="40" *ngIf="dish">
 
     <md-list>
@@ -45,7 +54,7 @@
       </md-list-item>
     </md-list>
 
-<!-- 
+    <!-- 
     <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
       <p>
         <md-input-container class="half-width" dividerColor="{{(formErrors.firstname) ? 'warn' : 'primary'}}">
@@ -76,7 +85,7 @@
 
 
 
-  <!-- 
+    <!-- 
   <form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate>
     <div class="form-group" ng-class="{ 'has-error has-feedback' : commentForm.name.$invalid && !commentForm.name.$pristine }">
       <label for="name" class="col-sm-3 control-label">Your Name</label>
@@ -111,4 +120,4 @@
     </div>
   </form> -->
 
-</div>
+  </div>
