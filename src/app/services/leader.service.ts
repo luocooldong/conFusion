@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+
 import { Leader }  from '../shared/leader';
 import { LEADERS } from '../shared/leaders';
 
 import { Observable } from 'rxjs/Rx';
 
-// import 'rxjs/add/operator/delay';
-// import 'rxjs/add/operator/switchMap';
+
 
 import { Http, Response } from '@angular/http';
 import { baseURL } from '../shared/baseurl';
@@ -15,22 +16,20 @@ import { ProcessHTTPMsgService } from './process-httpmsg.service';
 @Injectable()
 export class LeaderService {
 
-  constructor(private http: Http,
+  constructor(private restangular: Restangular,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getLeaders(): Observable<Leader[]> {
-   return this.http.get(baseURL + 'leaders')
-      .map(res => { return this.processHTTPMsgService.extractData(res); });
+    return this.restangular.all('leaders').getList();
   }
 
   getLeader(id: number): Observable<Leader>{
-    return this.http.get(baseURL + 'leaders/' + id)
-      .map(res => { return this.processHTTPMsgService.extractData(res); });
+     return this.restangular.one('leaders', id).get();
   }
 
   getFeaturedPromotion(): Observable<Leader> {
-   return this.http.get(baseURL + 'leaders?featured=true')
-      .map(res => { return this.processHTTPMsgService.extractData(res)[0]; });
+  return this.restangular.all('leaders').getList({featured: true})
+      .map(leaders => leaders[0]);
   }
 
 }

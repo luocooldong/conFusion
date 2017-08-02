@@ -29,6 +29,9 @@ import { LoginComponent } from './login/login.component';
 
 import { baseURL } from './shared/baseurl';
 
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,8 @@ import { baseURL } from './shared/baseurl';
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [DishService, PromotionService, LeaderService, ProcessHTTPMsgService,
     { provide: 'BaseURL', useValue: baseURL }],//依赖注入
