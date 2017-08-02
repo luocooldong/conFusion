@@ -11,23 +11,32 @@ import { baseURL } from '../shared/baseurl';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
+
 
 @Injectable()
 export class PromotionService {
 
-  constructor(private restangular : Restangular,
+  constructor(private db: AngularFireDatabase,
+     private restangular : Restangular,
      private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getPromotions(): Observable<Promotion[]> {
-     return this.restangular.all('promotions').getList();
+    return this.db.list('dishes');
+    //  return this.restangular.all('promotions').getList();
   }
 
   getPromotion(id: number): Observable<Promotion> {
-    return this.restangular.one('promotions',  id).get();
+    return this.db.object('/promotions/' + id);
+    // return this.restangular.one('promotions',  id).get();
   }
 
   getFeaturedPromotion(): Observable<Promotion> {
-    return this.restangular.all('promotions').getList({featured: true})
-      .map(promotions => promotions[0]);
+
+    return this.db.object('/promotions/' + 0);
+
+    // return this.restangular.all('promotions').getList({featured: true})
+    //   .map(promotions => promotions[0]);
   }
 }

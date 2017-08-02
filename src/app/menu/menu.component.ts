@@ -3,6 +3,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -15,7 +17,8 @@ export class MenuComponent implements OnInit {
   errMess: string;
 
   constructor(private dishservice: DishService, 
-   @Inject('BaseURL') private BaseURL) { }
+   @Inject('BaseURL') private BaseURL) { 
+    }
 
   ngOnInit() {
     this.dishservice.getDishes()

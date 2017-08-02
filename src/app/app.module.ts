@@ -32,6 +32,11 @@ import { baseURL } from './shared/baseurl';
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from './shared/restConfig';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +58,10 @@ import { RestangularConfigFactory } from './shared/restConfig';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
-    RestangularModule.forRoot(RestangularConfigFactory)
+    RestangularModule.forRoot(RestangularConfigFactory),
+    AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
+    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+    AngularFireAuthModule
   ],
   providers: [DishService, PromotionService, LeaderService, ProcessHTTPMsgService,
     { provide: 'BaseURL', useValue: baseURL }],//依赖注入

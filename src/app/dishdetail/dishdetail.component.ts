@@ -2,13 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-// import { BaseURL }  from '../shared/baseurl';
 
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
-import 'rxjs/add/operator/switchmap';
-
-
 
 @Component({
   selector: 'app-dishdetail',
